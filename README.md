@@ -52,7 +52,7 @@ Debe mostrar `10.x.x`
 ```bash
 # 1. Clonar o descomprimir el proyecto
 # Si tienes Git:
-git clone hhttps://github.com/ArturoU5/ExmParcial.git
+git clone https://github.com/ArturoU5/ExmParcial.git
 cd parcial
 
 # O simplemente descomprime el ZIP y abre la carpeta en VS Code

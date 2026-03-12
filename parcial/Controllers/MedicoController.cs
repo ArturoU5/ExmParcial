@@ -4,10 +4,21 @@ namespace MedicoController.Controllers
     [ApiController] [Route("api/medicos")]
     public class MedicoController : ControllerBase
     {
+        // lista de especialidades permitidas para validación
+        private static readonly List<string> especialidadesValidas = new List<string>
+        {
+            "Cardiologia",
+            "Pediatria",
+            "Dermatologia",
+            "Neurologia",
+            "Oftalmologia"
+        };
+
+        // lista de valores simulados
         private static List<Medico> medicos = new List<Medico>()
         {
-            new Medico { Id = 1, Nombre = "Alonzo", Apellido = "Huaman", Especialidad = "Cardiología", DNI = "12345678" },
-            new Medico { Id = 2, Nombre = "María", Apellido = "Gómez", Especialidad = "Pediatría", DNI = "87654321" }
+            new Medico { Id = 1, Nombre = "Alonzo", Apellido = "Huaman", Especialidad = "Cardiologia", DNI = "12345678" },
+            new Medico { Id = 2, Nombre = "María", Apellido = "Gómez", Especialidad = "Pediatria", DNI = "87654321" }
         };
 
         //Get -> lee datos
@@ -59,6 +70,14 @@ namespace MedicoController.Controllers
                 {
                     return BadRequest("Debe completar los datos del médico");
                 }
+                if (string.IsNullOrWhiteSpace(nuevoMedico.Especialidad))
+                {
+                    return BadRequest("La especialidad del médico es obligatoria.");
+                }
+                if (!especialidadesValidas.Contains(nuevoMedico.Especialidad))
+                {
+                    return BadRequest($"Especialidad no válida. Valores permitidos: {string.Join(", ", especialidadesValidas)}");
+                }
                 //obtiene id para agregar
                 nuevoMedico.Id = medicos.Max(m => m.Id) + 1;
                 medicos.Add(nuevoMedico);
@@ -87,6 +106,14 @@ namespace MedicoController.Controllers
                     {
                         m.Nombre = medicoActualizado.Nombre;
                         m.Apellido = medicoActualizado.Apellido;
+                        if (string.IsNullOrWhiteSpace(medicoActualizado.Especialidad))
+                        {
+                            return BadRequest("La especialidad del médico es obligatoria.");
+                        }
+                        if (!especialidadesValidas.Contains(medicoActualizado.Especialidad))
+                        {
+                            return BadRequest($"Especialidad no válida. Valores permitidos: {string.Join(", ", especialidadesValidas)}");
+                        }
                         m.Especialidad = medicoActualizado.Especialidad;
                         m.DNI = medicoActualizado.DNI;
                         return Ok("Médico actualizado correctamente");

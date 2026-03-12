@@ -6,8 +6,8 @@ namespace CitaController.Controllers
     {
         private static List<Cita> citas = new List<Cita>()
         {
-            new Cita { Id = 1, PacienteId = 1, MedicoId = 1, Estado = "Confirmada", Motivo = "Revisión general", Fecha = DateTime.Now },
-            new Cita { Id = 2, PacienteId = 2, MedicoId = 2, Estado = "Pendiente", Motivo = "Consulta pediátrica", Fecha = DateTime.Now }
+            new Cita { Id = 1, PacienteId = 1, MedicoId = 1, Estado = "Confirmada", Motivo = "Revisión general", FechaCreacion = DateTime.Now, FechaActualizacion = DateTime.Now },
+            new Cita { Id = 2, PacienteId = 2, MedicoId = 2, Estado = "Pendiente", Motivo = "Consulta pediátrica", FechaCreacion = DateTime.Now, FechaActualizacion = DateTime.Now }
         };
 
         // datos para probar la validación de PacienteId y MedicoId
@@ -76,6 +76,8 @@ namespace CitaController.Controllers
 
                 //obtiene id para agregar
                 nuevaCita.Id = citas.Max(c => c.Id) + 1;
+                // asignar fecha de actualización al momento de la creación
+                nuevaCita.FechaActualizacion = DateTime.Now;
                 citas.Add(nuevaCita);
                 //guarda en la ruta
                 return Created($"/api/citas/{nuevaCita.Id}", nuevaCita);
@@ -115,7 +117,8 @@ namespace CitaController.Controllers
                         c.MedicoId = citaActualizada.MedicoId;
                         c.Estado = citaActualizada.Estado;
                         c.Motivo = citaActualizada.Motivo;
-                        c.Fecha = citaActualizada.Fecha;
+                        c.FechaCreacion = citaActualizada.FechaCreacion;
+                        c.FechaActualizacion = DateTime.Now;
                         return Ok("Cita actualizada correctamente");
                     }
                 }

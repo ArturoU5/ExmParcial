@@ -12,7 +12,7 @@ public class Medico
     public string Apellido { get; set; } ="" ;
     
     [Required(ErrorMessage ="La especialidad del médico es obligatoria.")]
-    public string Especialidad { get; set; } ="" ;
+    public string Especialidad { get; set; } = "" ;
 
     [Required(ErrorMessage ="El DNI del médico es obligatorio.")]
     [MinLength(8, ErrorMessage = "El DNI debe ser de 8 caracteres.")]

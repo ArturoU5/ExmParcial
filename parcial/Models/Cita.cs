@@ -18,5 +18,7 @@ public class Cita
     public string Motivo { get; set; } ="" ;
     
     [Required]
-    public DateTime Fecha { get; set; }
+    public DateTime FechaCreacion { get; set; }
+
+    public DateTime FechaActualizacion { get; set; } = DateTime.Now;
 }

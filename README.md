@@ -52,7 +52,7 @@ Debe mostrar `10.x.x`
 ```bash
 # 1. Clonar o descomprimir el proyecto
 # Si tienes Git:
-git clone https://github.com/ArturoU5/ExmParcial.git
+git clone hhttps://github.com/ArturoU5/ExmParcial.git
 cd parcial
 
 # O simplemente descomprime el ZIP y abre la carpeta en VS Code
@@ -134,11 +134,12 @@ dotnet run
 
 ## ✅ Validaciones Implementadas
 
-- Campos obligatorios con `[Required]`
-- DNI: exactamente 8 caracteres (`[MinLength(8)]`, `[MaxLength(8)]`)
-- Validación de que el `PacienteId` y `MedicoId` existan al crear una cita
-- ID debe ser mayor a 0 en todas las operaciones
-- Manejo de errores con códigos HTTP apropiados (200, 201, 400, 404, 500)
+- Campos obligatorios con `[Required]`.
+- DNI: exactamente 8 caracteres (`[MinLength(8)]`, `[MaxLength(8)]`).
+- Validación de que el `PacienteId` y `MedicoId` existan al crear una cita.
+- ID debe ser mayor a 0 en todas las operaciones.
+- Manejo de errores con códigos HTTP apropiados (200, 201, 400, 404, 500).
+- Medico especialidad valida desde una lista.
 
 ## ✅ Rutas
 --------------CITAS--------------------
